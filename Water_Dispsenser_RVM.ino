@@ -3,12 +3,12 @@ const byte led_Red = 13; //I wonder what this could possibly be for
 const byte led_Green= 12; //I wonder what this could possibly be for
 const byte capacitive_Sensor = A0; //Take input from capacitive sensor; Detects if object is there or not
 const byte motor_Pin = 11; //Motor for gate when object is inserted
-const byte dispense_Button = 10; //Activates button that will turn on the pump when pressed
+const byte dispense_Button_Output = 10; //Activates button that will turn on the pump when pressed
 const byte pump_Pin = 9; //Pump
-const byte reverse_Motor_Direction = 8;
+const byte reverse_Motor_Direction = 8; //The pin of the relay that is powered when you want to reverse the direction of the motor
+const byte disepsned_Button_Input = 7; //Checks if button is pressed
 
-
-const int dispense_Amt = 5000; //Change this to however much you want it to wait before dispensing
+const int dispense_Amt = 5000; //Change this to however much you want it to wait before it stops dispensing water
 
 //Variables used for logic and automation
 bool object_Inserted = false; //Is an object inserted?
@@ -21,7 +21,8 @@ void setup() {
   pinMode(motor_Pin, OUTPUT); 
   pinMode(reverse_Motor_Direction, OUTPUT); 
   pinMode(pump_Pin, OUTPUT);
-  pinMode(dispense_Button, OUTPUT);
+  pinMode(dispense_Button_Output, OUTPUT);
+  pinMode(dispense_Button_Input, OUTPUT);
   pinMode(capacitive_Sensor, INPUT);
 
 }
@@ -49,8 +50,8 @@ void loop() {
 
   if (ready_Dispense) {
     digitalWrite(led_Green, HIGH); //I wonder what this could possibly be for
-    digitalWrite(dispense_Button, HIGH); //Activate button that will power pump when pressed
-    dispense_Query = digitalRead(dispense_Button); //Check if button is pressed
+    digitalWrite(dispense_Button_Output, HIGH); //Activate button that will power pump when pressed
+    dispense_Query = digitalRead(dispense_Button_Input); //Check if button is pressed
     if (dispense_Query) { 
       digitalWrite(pump_Pin, HIGH); //Turn on pump
       delay(dispense_Amt); ///Wait until x amt of time has passed
