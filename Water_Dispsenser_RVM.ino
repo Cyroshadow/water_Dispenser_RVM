@@ -26,7 +26,7 @@ void setup() {
   pinMode(capacitive_Sensor, INPUT);
 
 }
-
+//testing
 void loop() {
   
   object_Inserted = digitalRead(capacitive_Sensor); //Checks if object is inserted
