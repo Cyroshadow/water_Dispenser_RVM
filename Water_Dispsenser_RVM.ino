@@ -9,7 +9,7 @@ const byte servo_Pin = 11; //Motor for gate when object is inserted
 const byte dispense_Button_Output = 10; //Activates button that will turn on the pump when pressed
 const byte pump_Pin = 9; //Pump
 const byte reverse_Motor_Direction = 8; //The pin of the relay that is powered when you want to reverse the direction of the motor
-const byte disepsned_Button_Input = 7; //Checks if button is pressed
+const byte dispense_Button_Input = 7; //Checks if button is pressed
 
 const int dispense_Amt = 5000; //Change this to however much you want it to wait before it stops dispensing water
 const int close_Angle = 0; //Change this to change how much the servo motor closes
@@ -25,7 +25,6 @@ void setup() {
 
   pinMode(led_Red, OUTPUT);
   pinMode(led_Green, OUTPUT);  
-  pinMode(motor_Pin, OUTPUT); 
   pinMode(reverse_Motor_Direction, OUTPUT); 
   pinMode(pump_Pin, OUTPUT);
   pinMode(dispense_Button_Output, OUTPUT);
@@ -40,8 +39,7 @@ void loop() {
   object_Inserted = digitalRead(capacitive_Sensor); //Checks if object is inserted
 
   if (object_Inserted) {
-    digitalWrite(reverse_Motor_Direction, LOW); //Don't reverse the direction of the motor
-    servo.write(open_Angle); //Turn on motor to take object
+    servo.write(open_Angle); //Open hatch
     digitalWrite(led_Red, LOW); //I wonder what this could possibly be for
     //Uncomment the line of code below if you want it to be a set delay and remove the while loop
     //delay(10000);
@@ -50,8 +48,7 @@ void loop() {
     }
     ready_Dispense = true; //Indicate that it has accepted a viable plastic bottle
   } else {
-    servo.write(close_Angle);
-    digitalWrite(motor_Pin, LOW); //Turn off motor to take object
+    servo.write(close_Angle); //Close hatch
     digitalWrite(led_Green, LOW); //I wonder what this could possibly be for
     digitalWrite(led_Red, HIGH); //I wonder what this could possibly be for
   }
