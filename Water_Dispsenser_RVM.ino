@@ -51,7 +51,7 @@ void loop() {
   IR_Sens = (digitalRead(IR_Sensor) != 0); //Check if object is stopping the IR waves from returning to the sensor
   Serial.println(proximity);
   Serial.println(IR_Sens);
-  if (proximity >= prox_Threshold && IR_Sens == false) 
+  if (proximity <= prox_Threshold && IR_Sens == false) 
   {
     object_Inserted = true; //If object detected then tell arduino there is object
   } else {
