@@ -65,6 +65,7 @@ void loop() {
     //while (object_Inserted) {
       //delay(100); //Repeatedly delay until object is no longer detected
     //}
+    digitalWrite(led_Green, HIGH); //I wonder what this could possibly be for
     ready_Dispense = true; //Indicate that it has accepted a viable plastic bottle
     
   } else {
@@ -74,7 +75,7 @@ void loop() {
   }
   
   if (ready_Dispense) {
-    digitalWrite(led_Green, HIGH); //I wonder what this could possibly be for
+    
     digitalWrite(dispense_Button_Output, HIGH); //Activate button that will power pump when pressed
     dispense_Query = !digitalRead(dispense_Button_Input); //Check if button is pressed; Reverse because arduino reads button pressed as 0 instead of 1 for some reason
     if (dispense_Query) { 
