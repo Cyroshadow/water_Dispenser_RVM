@@ -2,7 +2,7 @@
 
 //Variables used to declare pinOuts and pinIns; Important for code adaptability and stops me from going mad
 const byte led_Red = 13; //I wonder what this could possibly be for
-const byte led_Green= 12; //I wonder what this could possibly be for
+const byte led_Green = 12; //I wonder what this could possibly be for
 const byte capacitive_Sensor = A0; //Take input from capacitive sensor; Detects if object is there or not
 const byte servo_Pin = 11; //Motor for gate when object is inserted
 const byte dispense_Button_Output = 10; //Activates button that will turn on the pump when pressed
