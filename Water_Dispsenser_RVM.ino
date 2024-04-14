@@ -59,13 +59,7 @@ void loop() {
   }
   if (object_Inserted) { 
     servo.write(open_Angle); //Open hatch
-    digitalWrite(led_Red, LOW); //I wonder what this could possibly be for
-    //Uncomment the line of code below if you want it to be a set delay and remove the while loop
-    delay(3000);
-    //while (object_Inserted) {
-      //delay(100); //Repeatedly delay until object is no longer detected
-    //}
-    
+    delay(3000); //Delay for object to fall in
     ready_Dispense = true; //Indicate that it has accepted a viable plastic bottle
     
   } else {
@@ -74,6 +68,7 @@ void loop() {
   
   if (ready_Dispense) {
     digitalWrite(led_Green, HIGH); //I wonder what this could possibly be for
+    digitalWrite(led_Red, LOW); //I wonder what this could possibly be for
     digitalWrite(dispense_Button_Output, HIGH); //Activate button that will power pump when pressed
     dispense_Query = !digitalRead(dispense_Button_Input); //Check if button is pressed; Reverse because arduino reads button pressed as 0 instead of 1 for some reason
     if (dispense_Query) { 
