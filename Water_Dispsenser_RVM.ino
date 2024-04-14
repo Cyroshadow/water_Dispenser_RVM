@@ -70,8 +70,6 @@ void loop() {
     
   } else {
     servo.write(close_Angle); //Close hatch
-    digitalWrite(led_Green, LOW); //I wonder what this could possibly be for
-    digitalWrite(led_Red, HIGH); //I wonder what this could possibly be for
   }
   
   if (ready_Dispense) {
@@ -82,8 +80,9 @@ void loop() {
       digitalWrite(pump_Pin, HIGH); //Turn on pump
       delay(dispense_Amt); ///Wait until x amt of time has passed
       digitalWrite(pump_Pin, LOW); //Turn off pump
-      digitalWrite(led_Green, LOW); //I wonder what this could possibly be for
       ready_Dispense = false; //Tell machine that it has used up it's one time dispense ticket
+      digitalWrite(led_Green, LOW); //I wonder what this could possibly be for
+      digitalWrite(led_Red, HIGH); //I wonder what this could possibly be for
     }
   }
 
