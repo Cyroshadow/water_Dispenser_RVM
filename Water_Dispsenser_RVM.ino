@@ -51,13 +51,13 @@ void loop() {
   IR_Sens = (digitalRead(IR_Sensor) != 0); //Check if object is stopping the IR waves from returning to the sensor
   Serial.println(proximity);
   Serial.println(IR_Sens);
-  if (proximity <= prox_Threshold && IR_Sens == false) 
+  if (proximity <= prox_Threshold && IR_Sens == false) //Replace && with || if its supposed to be the capacitive sensor OR ir detects an object, not AND
   {
     object_Inserted = true; //If object detected then tell arduino there is object
   } else {
     object_Inserted = false; //If object not detected then tell arduino there is no object
   }
-  if (object_Inserted) { //Replace && with || if its supposed to be the capacitive sensor OR ir detects an object, not AND
+  if (object_Inserted) { 
     servo.write(open_Angle); //Open hatch
     digitalWrite(led_Red, LOW); //I wonder what this could possibly be for
     //Uncomment the line of code below if you want it to be a set delay and remove the while loop
@@ -65,7 +65,7 @@ void loop() {
     //while (object_Inserted) {
       //delay(100); //Repeatedly delay until object is no longer detected
     //}
-    digitalWrite(led_Green, HIGH); //I wonder what this could possibly be for
+    
     ready_Dispense = true; //Indicate that it has accepted a viable plastic bottle
     
   } else {
@@ -75,7 +75,7 @@ void loop() {
   }
   
   if (ready_Dispense) {
-    
+    digitalWrite(led_Green, HIGH); //I wonder what this could possibly be for
     digitalWrite(dispense_Button_Output, HIGH); //Activate button that will power pump when pressed
     dispense_Query = !digitalRead(dispense_Button_Input); //Check if button is pressed; Reverse because arduino reads button pressed as 0 instead of 1 for some reason
     if (dispense_Query) { 
